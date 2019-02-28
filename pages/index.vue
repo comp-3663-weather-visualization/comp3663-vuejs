@@ -1,12 +1,17 @@
 <template>
   <div id="app">
     <h1>Local Weather for wolfville</h1>
+        <Card
+          :title="weather.temp"
+          :location="weather.location"
+          :url="weather.temp2"
+          :color="weather.color"
+        />
   </div>
 </template>
 
 <script>
 import Card from '~/components/Card.vue'
-
 
 export default {
   components: {
@@ -15,9 +20,10 @@ export default {
   data() {
     return {
       loading: false,
-      login: {
-        email: '',
-        password: ''
+      weather: {
+        temp: '19 celcius',
+        location: 'wolfville',
+        color: '#A4508B'
       }
     }
   }
