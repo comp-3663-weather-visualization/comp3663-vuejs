@@ -1,6 +1,6 @@
 <template>
   <div>
-     <ToolBar/>
+    
     <nuxt />
   </div>
 </template>
@@ -24,6 +24,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  height:100vh;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
 }
 
 *,
