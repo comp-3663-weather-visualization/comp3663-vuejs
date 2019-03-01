@@ -1,5 +1,5 @@
 <template>
-  <div id="e3" style="max-width: 400px; margin: auto;">
+  <div id="e3" style="max-width: 200px; margin: auto;">
     <v-container fluid style="min-height: 400;" grid-list-lg>
       <v-layout row wrap>
         <v-flex xs12>

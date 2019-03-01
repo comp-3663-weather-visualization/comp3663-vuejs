@@ -1,11 +1,46 @@
 <template>
   <div id="app">
+    <Card
+      :title="weather.temp"
+      :location="weather.location"
+      :url="weather.temp2"
+      :color="weather.color"
+    />
+
+    <v-container fluid grid-list-md>
+      <v-layout row wrap>
         <Card
           :title="weather.temp"
           :location="weather.location"
           :url="weather.temp2"
           :color="weather.color"
         />
+        <Card
+          :title="weather.temp"
+          :location="weather.location"
+          :url="weather.temp2"
+          :color="weather.color"
+        />
+        <Card
+          :title="weather.temp"
+          :location="weather.location"
+          :url="weather.temp2"
+          :color="weather.color"
+        />
+        <Card
+          :title="weather.temp"
+          :location="weather.location"
+          :url="weather.temp2"
+          :color="weather.color"
+        />
+        <Card
+          :title="weather.temp"
+          :location="weather.location"
+          :url="weather.temp2"
+          :color="weather.color"
+        />
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
