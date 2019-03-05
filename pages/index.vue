@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <div id="main">
-      <v-container fluid grid-list-md>
-        <v-layout row wrap>
-          <Time :time="weather.time"/>
+    <!-- <div id="main"> -->
+      <v-container grid-list-md >
+        <v-layout align-center justify-space-around row>
+          <v-flex xs6>
+          <Time :time="weather.time"
+            :date="weather.date"
+          />
+          </v-flex>
+           <v-flex xs6>
           <Weather
             :time="weather.time"
             :title="weather.title"
             :location="weather.location"
             :temp="weather.temp"
           />
+           </v-flex>
         </v-layout>
       </v-container>
-    </div>
+    <!-- </div> -->
 
     <div id="test">
       <v-container fluid grid-list-md>
@@ -81,12 +87,12 @@ export default {
   },
   data() {
     var today = new Date()
-    var date =
-      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+    var time = today.getHours() + ':' + today.getMinutes()
     return {
       loading: false,
       weather: {
-        time: date.toString(),
+        time: time.toString(),
+        date: today.toString(),
         title: 'Stormy clouds',
         temp: '19 C',
         location: 'Wolfvile NS',
