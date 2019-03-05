@@ -20,6 +20,7 @@ h1 {
     position: absolute;
     left: 0;
     color: white;
+    font-size: 25px;
 }
 
 </style>

@@ -3,12 +3,12 @@
     <!-- <div id="main"> -->
       <v-container grid-list-md >
         <v-layout align-center justify-space-around row>
-          <v-flex xs6>
+          <v-flex xs6 fluid>
           <Time :time="weather.time"
             :date="weather.date"
           />
           </v-flex>
-           <v-flex xs6>
+           <v-flex xs6 fluid>
           <Weather
             :time="weather.time"
             :title="weather.title"
@@ -20,42 +20,8 @@
       </v-container>
     <!-- </div> -->
 
-    <div id="test">
-      <v-container fluid grid-list-md>
-        <v-layout row wrap>
-          <Card
-            :title="weather.temp"
-            :location="weather.location"
-            :url="weather.temp2"
-            :color="weather.color"
-          />
-          <Card
-            :title="weather.temp"
-            :location="weather.location"
-            :url="weather.temp2"
-            :color="weather.color"
-          />
-          <Card
-            :title="weather.temp"
-            :location="weather.location"
-            :url="weather.temp2"
-            :color="weather.color"
-          />
-          <Card
-            :title="weather.temp"
-            :location="weather.location"
-            :url="weather.temp2"
-            :color="weather.color"
-          />
-          <Card
-            :title="weather.temp"
-            :location="weather.location"
-            :url="weather.temp2"
-            :color="weather.color"
-          />
-        </v-layout>
-      </v-container>
-    </div>
+    
+   
   </div>
 </template>
 
@@ -79,6 +45,22 @@ import Card from '~/components/Card.vue'
 import Weather from '~/components/Weather.vue'
 import Time from '~/components/Time.vue'
 
+function format(date) {
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+
+
 export default {
   components: {
     Card,
@@ -88,11 +70,12 @@ export default {
   data() {
     var today = new Date()
     var time = today.getHours() + ':' + today.getMinutes()
+    // var date = today.getDay().toString() + ':' + today.getMonth().toString()
     return {
       loading: false,
       weather: {
         time: time.toString(),
-        date: today.toString(),
+        date: format(today),
         title: 'Stormy clouds',
         temp: '19 C',
         location: 'Wolfvile NS',
