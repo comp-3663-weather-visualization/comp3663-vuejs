@@ -17,7 +17,14 @@
           />
            </v-flex>
         </v-layout>
+        
+
       </v-container>
+      <v-container >
+        
+           <Chart
+          />
+        </v-container>
     <!-- </div> -->
 
     
@@ -44,6 +51,7 @@
 import Card from '~/components/Card.vue'
 import Weather from '~/components/Weather.vue'
 import Time from '~/components/Time.vue'
+import Chart from '~/components/Chart.vue'
 
 function format(date) {
   var monthNames = [
@@ -65,7 +73,8 @@ export default {
   components: {
     Card,
     Weather,
-    Time
+    Time,
+    Chart
   },
   data() {
     var today = new Date()
