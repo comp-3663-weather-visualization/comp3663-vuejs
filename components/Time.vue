@@ -1,26 +1,27 @@
 <template>
-  <div id="e3" style="max-width:500px; margin: auto;">
+  <div id="e3">
     <v-container fluid style="min-height: 400;" grid-list-lg>
-        <h1>{{time}}</h1>
-        <br>
-        <h1>{{date}}</h1>
+      <h1>{{ time }}</h1>
+      <br>
+      <h1>{{ date }}</h1>
     </v-container>
   </div>
 </template>
 <script>
 export default {
-  props: ['time', 'date']
+  props: {
+    date: { type: String, default: '' },
+    time: { type: String, default: '' }
+  }
 }
 
 </script>
 
 <style scoped>
-
 h1 {
-    position: absolute;
-    left: 0;
-    color: white;
-    font-size: 25px;
+  position: absolute;
+  left: 0;
+  color: white;
+  font-size: 25px;
 }
-
 </style>

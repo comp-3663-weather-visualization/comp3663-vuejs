@@ -1,15 +1,15 @@
 <template>
   <div>
-    <nuxt/>
+    <nuxt />
   </div>
 </template>
 <script>
-import ToolBar from '~/components/Toolbar.vue';
-export default {
-    components: {
-      ToolBar
-    }
-}
+// import Toolbar from '~/components/Toolbar.vue'
+// export default {
+//   components: {
+//     Toolbar
+//   }
+// }
 </script>
 
 <style>
@@ -65,5 +65,10 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+#e3 {
+  margin: auto;
+  max-width: 500px;
 }
 </style>

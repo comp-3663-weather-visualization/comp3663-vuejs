@@ -1,5 +1,5 @@
 <template>
-  <div id="e3" style="max-width: 200px; margin: auto;">
+  <div id="e3" style="max-width: 200px;">
     <v-container fluid style="min-height: 400;" grid-list-lg>
       <v-layout row wrap>
         <v-flex xs12>
@@ -8,8 +8,10 @@
               <v-layout row>
                 <v-flex xs7>
                   <div>
-                    <div class="headline">{{title}}</div>
-                    <div>{{location}}</div>
+                    <div class="headline">
+                      {{ title }}
+                    </div>
+                    <div>{{ location }}</div>
                   </div>
                   <br>
                   <br>
@@ -24,7 +26,12 @@
 </template>
 <script>
 export default {
-  props: ['title', 'location', 'url', 'color']
+  props: {
+    color: { type: String, default: '' },
+    location: { type: String, default: '' },
+    title: { type: String, default: '' },
+    url: { type: String, default: '' }
+  }
 }
 </script>
 
@@ -32,6 +39,5 @@ export default {
 .rounded-card {
     border-radius:10px;
 }
-
 
 </style>
