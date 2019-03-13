@@ -3,6 +3,14 @@
     <nuxt />
   </div>
 </template>
+<script>
+// import Toolbar from '~/components/Toolbar.vue'
+// export default {
+//   components: {
+//     Toolbar
+//   }
+// }
+</script>
 
 <style>
 html {
@@ -15,6 +23,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  height:100vh;
+  /* background-color: #f5d020; */
+/* background-image: linear-gradient(315deg, #f5d020 0%, #f53803 74%); */
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+/* background-color: #36096d; */
+/* background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%); */
 }
 
 *,
@@ -51,5 +65,10 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+#e3 {
+  margin: auto;
+  max-width: 500px;
 }
 </style>

@@ -1,72 +1,170 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        comp3663-vuejs
-      </h1>
-      <h2 class="subtitle">
-        Frontend for this weather visualization project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </section>
+  <div id="app">
+    <!-- <div id="main"> -->
+    <v-container grid-list-md>
+      <v-layout align-center justify-space-around row>
+        <v-flex xs6 fluid>
+          <Time :time="parsedWeather.time" :date="parsedWeather.date"/>
+        </v-flex>
+        <v-flex xs6 fluid>
+          <Weather
+            :time="parsedWeather.time"
+            :title="parsedWeather.title"
+            :location="parsedWeather.location"
+            :temp="parsedWeather.temp"
+          />
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container>
+      <Chart/>
+    </v-container>
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import axios from 'axios'
+// import Card from '~/components/Card.vue'
+import Chart from '~/components/Chart.vue'
+import Time from '~/components/Time.vue'
+import Weather from '~/components/Weather.vue'
 
 export default {
   components: {
-    Logo
+    // Card,
+    Chart,
+    Time,
+    Weather
+  },
+  data() {
+    return {
+      owmCityId: '6183858',
+      loading: false,
+      owmKey: '0a2b5b3b72b10157f0689dd0d45dae9d',
+      owmCurrentWeather: {
+        coord: {
+          lon: -64.37,
+          lat: 45.08
+        },
+        weather: [
+          {
+            id: 803,
+            main: 'Clouds',
+            description: 'broken clouds',
+            icon: '04n'
+          }
+        ],
+        base: 'stations',
+        main: {
+          temp: 261.53,
+          pressure: 1020,
+          humidity: 66,
+          temp_min: 260.37,
+          temp_max: 263.15
+        },
+        visibility: 24140,
+        wind: {
+          speed: 5.1,
+          deg: 300,
+          gust: 7.7
+        },
+        clouds: {
+          all: 75
+        },
+        dt: 1552007707,
+        sys: {
+          type: 1,
+          id: 1015,
+          message: 0.0037,
+          country: 'CA',
+          sunrise: 1552041795,
+          sunset: 1552083239
+        },
+        id: 6183858,
+        name: 'Wolfville',
+        cod: 200
+      }
+    }
+  },
+  computed: {
+    parsedWeather() {
+      return {
+        // time: this.timeFormat(this.owmCurrentWeather.dt),
+        // date: this.dateFormat(this.owmCurrentWeather.dt),
+        time: this.timeFormat(),
+        date: this.dateFormat(),
+        title: this.owmCurrentWeather.weather[0].main,
+        temp: this.tempFormat(this.owmCurrentWeather.main.temp),
+        location: this.owmCurrentWeather.name,
+        color: 'transparent'
+      }
+    }
+  },
+  created() {
+    this.getCurrentWeather(this.owmCityId)
+    // this.getHistoricalWeather()
+  },
+  methods: {
+    getCurrentWeather(owmCityId) {
+      const owmUrl = `https://api.openweathermap.org/data/2.5/weather?id=${owmCityId}&appid=${
+        this.owmKey
+      }`
+      axios
+        .get(owmUrl)
+        .then(({ data }) => {
+          this.owmCurrentWeather = data
+        })
+        .catch(response => {
+          console.log(response)
+        })
+    },
+    dateFormat() {
+      const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ]
+      // const date = new Date(datestamp * 1000)
+      const date = new Date()
+      const day = date.getDate()
+      const monthIndex = date.getMonth()
+      const year = date.getFullYear()
+
+      return `${day} ${monthNames[monthIndex]} ${year}`
+    },
+    tempFormat(kelvin) {
+      const celsius = Number(this.owmCurrentWeather.main.temp) - 273.15
+
+      return `${parseFloat(celsius).toFixed(2)}°C`
+    },
+    timeFormat() {
+      // const date = new Date(datestamp * 1000)
+      const date = new Date()
+      const hours = date.getHours()
+      const minutes = `0${date.getMinutes()}`
+
+      return `${hours}:${minutes.substr(-2)}`
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  position: relative;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+/* #main {
+  position: absolute;
+  right: 0;
+} */
 </style>
