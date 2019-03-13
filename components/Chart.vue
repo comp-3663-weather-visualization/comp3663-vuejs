@@ -16,7 +16,7 @@ export default {
           data: [10, 20, 12, 3, 10, 4, 3, 8, 4, 2, 12, 11]
         },
         {
-          label: 'Other shit',
+          label: 'Other stuff',
           backgroundColor: '#f87979',
           data: [10, 23, 32, 3, 10, 4, 3, 8, 4, 2, 32, 11]
         }

@@ -4,7 +4,7 @@
       <h1>{{ title }}</h1>
       <h2>{{ location }}</h2>
       <br>
-      <h1 id="weather">
+      <h1 id="temp">
         {{ temp }}
       </h1>
     </v-container>
@@ -29,7 +29,7 @@ h1 {
 h2 {
   font-size: 40px;
 }
-#weather {
+#temp {
   position: absolute;
   right: 120px;
 }

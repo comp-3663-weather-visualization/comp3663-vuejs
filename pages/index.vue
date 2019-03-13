@@ -90,20 +90,20 @@ export default {
   computed: {
     parsedWeather() {
       return {
-        // time: this.timeFormat(this.weather.dt),
-        // date: this.dateFormat(this.weather.dt),
+        // time: this.timeFormat(this.owmCurrentWeather.dt),
+        // date: this.dateFormat(this.owmCurrentWeather.dt),
         time: this.timeFormat(),
         date: this.dateFormat(),
-        title: this.weather.weather[0].main,
-        temp: this.tempFormat(this.weather.main.temp),
-        location: this.weather.name,
+        title: this.owmCurrentWeather.weather[0].main,
+        temp: this.tempFormat(this.owmCurrentWeather.main.temp),
+        location: this.owmCurrentWeather.name,
         color: 'transparent'
       }
     }
   },
   created() {
     this.getCurrentWeather(this.owmCityId)
-    this.getHistoricalWeather()
+    // this.getHistoricalWeather()
   },
   methods: {
     getCurrentWeather(owmCityId) {
@@ -113,8 +113,7 @@ export default {
       axios
         .get(owmUrl)
         .then(({ data }) => {
-          console.log(JSON.stringify(data,'',2))
-          this.weather = data
+          this.owmCurrentWeather = data
         })
         .catch(response => {
           console.log(response)
@@ -144,7 +143,7 @@ export default {
       return `${day} ${monthNames[monthIndex]} ${year}`
     },
     tempFormat(kelvin) {
-      const celsius = Number(this.weather.main.temp) - 273.15
+      const celsius = Number(this.owmCurrentWeather.main.temp) - 273.15
 
       return `${parseFloat(celsius).toFixed(2)}°C`
     },
