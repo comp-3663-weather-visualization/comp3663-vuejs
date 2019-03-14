@@ -24,6 +24,8 @@
 </template>
 
 <script>
+const WEATHER_API_URL = 'http://167.99.178.142:8000'
+
 import axios from 'axios'
 // import Card from '~/components/Card.vue'
 import Chart from '~/components/Chart.vue'
@@ -39,81 +41,75 @@ export default {
   },
   data() {
     return {
-      owmCityId: '6183858',
-      loading: false,
-      owmKey: '0a2b5b3b72b10157f0689dd0d45dae9d',
-      owmCurrentWeather: {
-        coord: {
-          lon: -64.37,
-          lat: 45.08
-        },
-        weather: [
-          {
-            id: 803,
-            main: 'Clouds',
-            description: 'broken clouds',
-            icon: '04n'
-          }
-        ],
-        base: 'stations',
-        main: {
-          temp: 261.53,
-          pressure: 1020,
-          humidity: 66,
-          temp_min: 260.37,
-          temp_max: 263.15
-        },
-        visibility: 24140,
-        wind: {
-          speed: 5.1,
-          deg: 300,
-          gust: 7.7
-        },
-        clouds: {
-          all: 75
-        },
-        dt: 1552007707,
-        sys: {
-          type: 1,
-          id: 1015,
-          message: 0.0037,
-          country: 'CA',
-          sunrise: 1552041795,
-          sunset: 1552083239
-        },
-        id: 6183858,
-        name: 'Wolfville',
-        cod: 200
-      }
+      cityName: 'KENTVILLE CDA CS',
+      currentWeather: {
+        temp: '451',
+        slogan: 'World is melting'
+      },
+      historicalWeather: [
+        {"month": 1, "avrTemp": -4.2},
+        {"month": 2, "avrTemp": -2.6},
+        {"month": 3, "avrTemp": 1.6},
+        {"month": 4, "avrTemp": 6.4},
+        {"month": 5, "avrTemp": 10.0},
+        {"month": 6, "avrTemp": 16.4},
+        {"month": 7, "avrTemp": 18.8},
+        {"month": 8, "avrTemp": 19.2},
+        {"month": 9, "avrTemp": 14.6},
+        {"month": 10, "avrTemp": 9.9},
+        {"month": 11, "avrTemp": 4.6},
+        {"month": 12, "avrTemp": -3.2}
+      ],
+      loading: false
     }
   },
   computed: {
     parsedWeather() {
       return {
-        // time: this.timeFormat(this.owmCurrentWeather.dt),
-        // date: this.dateFormat(this.owmCurrentWeather.dt),
         time: this.timeFormat(),
         date: this.dateFormat(),
-        title: this.owmCurrentWeather.weather[0].main,
-        temp: this.tempFormat(this.owmCurrentWeather.main.temp),
-        location: this.owmCurrentWeather.name,
+        title: this.currentWeather.slogan,
+        temp: `${this.currentWeather.temp}°C`,
+        location: this.cityName,
         color: 'transparent'
       }
     }
   },
   created() {
-    this.getCurrentWeather(this.owmCityId)
-    // this.getHistoricalWeather()
+    this.getCurrentWeather(this.cityName)
+    this.getHistoricalWeather(this.cityName)
+    this.getLocations()
   },
   methods: {
-    getCurrentWeather(owmCityId) {
-      const owmUrl = `https://api.openweathermap.org/data/2.5/weather?id=${owmCityId}&appid=${
-        this.owmKey
-      }`
+    getCurrentWeather() {
+      const url = `${WEATHER_API_URL}/weather?city=${this.cityName}`
       axios
-        .get(owmUrl)
+        .get(url)
         .then(({ data }) => {
-          this.owmCurrentWeather = data
+          this.currentWeather = data
+          // this.currentWeather.temp = `${this.currentWeather.temp}°C`
+        })
+        .catch(response => {
+          console.log(response)
+        })
+    },
+    getHistoricalWeather() {
+      const url = `${WEATHER_API_URL}/historicalWeather?city=${this.cityName}&year=2018`
+      axios
+        .get(url)
+        .then(({ data }) => {
+          this.historicalWeather = data
+        })
+        .catch(response => {
+          console.log(response)
+        })
+    },
+    getLocations() {
+      const url = `${WEATHER_API_URL}/locations`
+      axios
+        .get(url)
+        .then(({ data }) => {
+          this.locations = data
         })
         .catch(response => {
           console.log(response)
@@ -141,11 +137,6 @@ export default {
       const year = date.getFullYear()
 
       return `${day} ${monthNames[monthIndex]} ${year}`
-    },
-    tempFormat(kelvin) {
-      const celsius = Number(this.owmCurrentWeather.main.temp) - 273.15
-
-      return `${parseFloat(celsius).toFixed(2)}°C`
     },
     timeFormat() {
       // const date = new Date(datestamp * 1000)
