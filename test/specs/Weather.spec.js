@@ -16,7 +16,7 @@ test.beforeEach(() => {
       title,
       temp,
       time
-    },
+    }
   })
 })
 

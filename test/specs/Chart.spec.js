@@ -7,7 +7,7 @@ let wrapper
 test.beforeEach(() => {
   wrapper = mount(Chart, {
     propsData: {
-    },
+    }
   })
 })
 
