@@ -1,8 +1,7 @@
 <template>
   <div id="e3">
-    <v-container fluid style="min-height: 400;" grid-list-lg>
+    <v-container id="weather-container" fluid grid-list-lg>
       <h1>{{ title }}</h1>
-      <h2>{{ location }}</h2>
       <br>
       <h1 id="temp">
         {{ temp }}
@@ -10,13 +9,13 @@
     </v-container>
   </div>
 </template>
+
 <script>
 export default {
   props: {
-    location: { type: String, default: '' },
     title: { type: String, default: '' },
     temp: { type: String, default: '' },
-    time: { type: String, default: '' }
+    time: { type: String, default: '' },
   }
 }
 </script>
@@ -36,6 +35,9 @@ h2 {
 #left {
   position: absolute;
   left: 0;
+}
+#weather-container {
+  min-height: 400;
 }
 /* .rounded-card {
    background-color: transparent; */
