@@ -27,7 +27,6 @@
 
 <script>
 import axios from 'axios'
-// import Card from '~/components/Card.vue'
 import Chart from '~/components/Chart.vue'
 import LabelSelect from '~/components/LabelSelect.vue'
 import Time from '~/components/Time.vue'
@@ -37,7 +36,6 @@ const WEATHER_API_URL = 'http://167.99.178.142:8000'
 
 export default {
   components: {
-    // Card,
     Chart,
     LabelSelect,
     Time,
@@ -80,20 +78,20 @@ export default {
       ],
       loading: false,
       locations: ['ANNAPOLIS ROYAL', 'AVON', 'AYLESFORD', 'BACCARO'],
-        monthNames: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December'
-        ],
+      monthNames: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ],
       year1: 1998,
       year2: 2018
     }
@@ -139,7 +137,6 @@ export default {
         .get(encodeURI(url))
         .then(({ data }) => {
           this.currentWeather = data
-          // this.currentWeather.temp = `${this.currentWeather.temp}°C`
         })
         .catch((response) => {
           console.log(response)
@@ -181,7 +178,6 @@ export default {
       return `${day} ${this.monthNames[monthIndex]} ${year}`
     },
     timeFormat() {
-      // const date = new Date(datestamp * 1000)
       const date = new Date()
       const hours = date.getHours()
       const minutes = `0${date.getMinutes()}`
@@ -196,8 +192,4 @@ export default {
 .container {
   position: relative;
 }
-/* #main {
-  position: absolute;
-  right: 0;
-} */
 </style>
