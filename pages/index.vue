@@ -3,10 +3,14 @@
     <v-container grid-list-md>
       <v-layout align-center justify-space-around row>
         <v-flex xs6 fluid>
-          <Time :time="parsedWeather.time" :date="parsedWeather.date"/>
+          <Time :time="parsedWeather.time" :date="parsedWeather.date" />
         </v-flex>
         <v-flex xs6 fluid>
-          <label-select v-model="cityName" :list="locations" @input="updateWeather"/>
+          <label-select
+            v-model="cityName"
+            :list="locations"
+            @input="updateWeather"
+          />
           <weather
             :time="parsedWeather.time"
             :title="parsedWeather.title"
@@ -16,20 +20,20 @@
       </v-layout>
     </v-container>
     <v-container>
-      <chart :chartdata="chartData"/>
+      <chart :chart-data="chartData" />
     </v-container>
   </div>
 </template>
 
 <script>
-const WEATHER_API_URL = 'http://167.99.178.142:8000'
-
 import axios from 'axios'
 // import Card from '~/components/Card.vue'
 import Chart from '~/components/Chart.vue'
 import LabelSelect from '~/components/LabelSelect.vue'
 import Time from '~/components/Time.vue'
 import Weather from '~/components/Weather.vue'
+
+const WEATHER_API_URL = 'http://167.99.178.142:8000'
 
 export default {
   components: {
@@ -76,20 +80,20 @@ export default {
       ],
       loading: false,
       locations: ['ANNAPOLIS ROYAL', 'AVON', 'AYLESFORD', 'BACCARO'],
-      monthNames: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ],
+        monthNames: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
+        ],
       year1: 1998,
       year2: 2018
     }
@@ -102,12 +106,12 @@ export default {
           {
             label: this.year1,
             backgroundColor: '#f87979',
-            data: this.historicalWeather1.map(t => { return t.avrTemp} )
+            data: this.historicalWeather1.map((t) => { return t.avrTemp })
           },
           {
             label: this.year2,
             backgroundColor: '#333',
-            data: this.historicalWeather2.map(t => { return t.avrTemp} )
+            data: this.historicalWeather2.map((t) => { return t.avrTemp })
           }
         ]
       }
@@ -125,7 +129,7 @@ export default {
   },
   created() {
     this.getCurrentWeather()
-    this.getHistoricalWeather(this.year1, (data) => {this.historicalWeather1 = data})
+    this.getHistoricalWeather(this.year1, (data) => { this.historicalWeather1 = data })
     this.getLocations()
   },
   methods: {
@@ -137,7 +141,7 @@ export default {
           this.currentWeather = data
           // this.currentWeather.temp = `${this.currentWeather.temp}°C`
         })
-        .catch(response => {
+        .catch((response) => {
           console.log(response)
         })
     },
@@ -148,7 +152,7 @@ export default {
         .then(({ data }) => {
           cb(data)
         })
-        .catch(response => {
+        .catch((response) => {
           console.log(response)
         })
     },
@@ -159,14 +163,14 @@ export default {
         .then(({ data }) => {
           this.locations = data.sort()
         })
-        .catch(response => {
+        .catch((response) => {
           console.log(response)
         })
     },
     updateWeather() {
       this.getCurrentWeather()
-      this.getHistoricalWeather(this.year1, (data) => {this.historicalWeather1 = data})
-      this.getHistoricalWeather(this.year2, (data) => {this.historicalWeather2 = data})
+      this.getHistoricalWeather(this.year1, (data) => { this.historicalWeather1 = data })
+      this.getHistoricalWeather(this.year2, (data) => { this.historicalWeather2 = data })
     },
     dateFormat() {
       const date = new Date()

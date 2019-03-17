@@ -15,7 +15,7 @@ export default {
   props: {
     title: { type: String, default: '' },
     temp: { type: String, default: '' },
-    time: { type: String, default: '' },
+    time: { type: String, default: '' }
   }
 }
 </script>

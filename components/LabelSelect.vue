@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class='dropdown-wrapper'>
+    <div class="dropdown-wrapper">
       <select
         v-model="selected"
         @change="returnChoice()"
@@ -23,19 +23,19 @@ export default {
     value: { type: String, default: '' },
     list: { type: Array, default: () => [] }
   },
-  data () {
+  data() {
     return {
       selected: ''
     }
   },
-  created () {
+  created() {
     this.setSelected()
   },
   methods: {
-    setSelected () {
+    setSelected() {
       this.selected = this.value
     },
-    returnChoice () {
+    returnChoice() {
       this.$emit('input', this.selected)
     }
   }
