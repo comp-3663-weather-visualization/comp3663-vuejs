@@ -4,6 +4,7 @@
       v-model="selected"
       @change="returnChoice()"
     >
+      <option></option>
       <option
         v-for="(item, key) in list"
         :key="key"
@@ -42,7 +43,6 @@ export default {
 
 <style scoped>
 div.dropdown-wrapper {
-  /* color: white; */
   font-size: 1.5em;
   width: 300px; /* Sets the width of the dropdown */
   margin: 0 50px 0 0;
@@ -53,10 +53,10 @@ div.dropdown-wrapper select {
   background-color: transparent /* This hides the background */;
   background-image: none;
   -webkit-appearance: none /* Webkit Fix */;
-  box-shadow:none;
-  padding:0.3em 0.5em;
+  box-shadow: none;
+  padding: 0.3em 0.5em;
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid;
 }
 
 div.dropdown-wrapper option {

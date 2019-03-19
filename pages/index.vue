@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-container>
-      <!-- <v-layout align-center justify-space-around row> -->
       <v-layout row>
         <v-flex fluid>
           <Time :time="parsedWeather.time" :date="parsedWeather.date" />
@@ -27,14 +26,11 @@
         <v-spacer />
         <v-flex fluid>
           <label-select
-            class="right"
+            class="m-1 right"
             v-model="cityName"
             :list="locations"
             @input="updateWeather"
           />
-          <br>
-          <br>
-          <br>
           <weather
             :time="parsedWeather.time"
             :title="parsedWeather.title"

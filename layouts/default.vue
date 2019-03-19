@@ -18,7 +18,7 @@ html {
   height: 100vh;
   min-height: 700px;
   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
-  color: white;
+  color: #fff;
 }
 
 *,
