@@ -52,7 +52,7 @@ import LabelSelect from '~/components/LabelSelect.vue'
 import Time from '~/components/Time.vue'
 import Weather from '~/components/Weather.vue'
 
-const WEATHER_API_URL = 'http://167.99.178.142:8000'
+const WEATHER_API_URL = 'https://weather.johnconnolly.me'
 
 export default {
   components: {
