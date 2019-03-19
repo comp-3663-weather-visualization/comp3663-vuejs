@@ -1,16 +1,40 @@
 <template>
   <div id="app">
-    <v-container grid-list-md>
-      <v-layout align-center justify-space-around row>
-        <v-flex xs6 fluid>
+    <v-container>
+      <!-- <v-layout align-center justify-space-around row> -->
+      <v-layout row>
+        <v-flex fluid>
           <Time :time="parsedWeather.time" :date="parsedWeather.date" />
+          <div class="m-1">
+            <label class="inline">Year 1: </label>
+            <label-select
+              class="inline"
+              v-model="year1"
+              :list="years"
+              @input="updateWeather"
+            />
+          </div>
+          <div class="m-1">
+            <label class="inline">Year 2: </label>
+            <label-select
+              class="inline"
+              v-model="year2"
+              :list="years"
+              @input="updateWeather"
+            />
+          </div>
         </v-flex>
-        <v-flex xs6 fluid>
+        <v-spacer />
+        <v-flex fluid>
           <label-select
+            class="right"
             v-model="cityName"
             :list="locations"
             @input="updateWeather"
           />
+          <br>
+          <br>
+          <br>
           <weather
             :time="parsedWeather.time"
             :title="parsedWeather.title"
@@ -63,21 +87,22 @@ export default {
         { month: 12, avrTemp: 0 }
       ],
       historicalWeather2: [
-        { month: 1, avrTemp: 5 },
-        { month: 2, avrTemp: 5 },
-        { month: 3, avrTemp: 5 },
-        { month: 4, avrTemp: 5 },
-        { month: 5, avrTemp: 5 },
-        { month: 6, avrTemp: 5 },
-        { month: 7, avrTemp: 5 },
-        { month: 8, avrTemp: 5 },
-        { month: 9, avrTemp: 5 },
-        { month: 10, avrTemp: 5 },
-        { month: 11, avrTemp: 5 },
-        { month: 12, avrTemp: 5 }
+        { month: 1, avrTemp: 0 },
+        { month: 2, avrTemp: 0 },
+        { month: 3, avrTemp: 0 },
+        { month: 4, avrTemp: 0 },
+        { month: 5, avrTemp: 0 },
+        { month: 6, avrTemp: 0 },
+        { month: 7, avrTemp: 0 },
+        { month: 8, avrTemp: 0 },
+        { month: 9, avrTemp: 0 },
+        { month: 10, avrTemp: 0 },
+        { month: 11, avrTemp: 0 },
+        { month: 12, avrTemp: 0 }
       ],
       loading: false,
       locations: ['ANNAPOLIS ROYAL', 'AVON', 'AYLESFORD', 'BACCARO'],
+      minYear: 1960,
       monthNames: [
         'January',
         'February',
@@ -92,8 +117,8 @@ export default {
         'November',
         'December'
       ],
-      year1: 1998,
-      year2: 2018
+      year1: '',
+      year2: ''
     }
   },
   computed: {
@@ -123,6 +148,12 @@ export default {
         location: this.cityName,
         color: 'transparent'
       }
+    },
+    years() {
+      const date = new Date()
+      const currentYear = date.getFullYear()
+      const delta = currentYear - this.minYear
+      return [...Array(delta).keys()].map(x => this.minYear++)
     }
   },
   created() {
@@ -191,5 +222,13 @@ export default {
 <style scoped>
 .container {
   position: relative;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.m-1{
+  margin: 1em;
 }
 </style>

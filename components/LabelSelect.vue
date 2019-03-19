@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <div class="dropdown-wrapper">
-      <select
-        v-model="selected"
-        @change="returnChoice()"
+  <div class="dropdown-wrapper">
+    <select
+      v-model="selected"
+      @change="returnChoice()"
+    >
+      <option
+        v-for="(item, key) in list"
+        :key="key"
       >
-        <option
-          v-for="(item, key) in list"
-          :key="key"
-        >
-          {{ item }}
-        </option>
-      </select>
-    </div>
+        {{ item }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -44,16 +42,25 @@ export default {
 
 <style scoped>
 div.dropdown-wrapper {
-    width: 150px; /* Sets the width of your dropdown */
+  /* color: white; */
+  font-size: 1.5em;
+  width: 300px; /* Sets the width of the dropdown */
+  margin: 0 50px 0 0;
 }
 
 div.dropdown-wrapper select {
-    width:115% /* This hides the arrow icon */;
-    background-color:transparent /* This hides the background */;
-    background-image:none;
-    -webkit-appearance: none /* Webkit Fix */;
-    border:none;
-    box-shadow:none;
-    padding:0.3em 0.5em;
+  width: 115% /* This hides the arrow icon */;
+  background-color: transparent /* This hides the background */;
+  background-image: none;
+  -webkit-appearance: none /* Webkit Fix */;
+  box-shadow:none;
+  padding:0.3em 0.5em;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+div.dropdown-wrapper option {
+  color: black;
+  font-size: 1em;
 }
 </style>

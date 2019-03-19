@@ -1,5 +1,4 @@
 <script>
-// import { Bar, Line } from 'vue-chartjs'
 import { Line, mixins } from 'vue-chartjs'
 
 export default {
