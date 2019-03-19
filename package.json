@@ -1,7 +1,7 @@
 {
   "name": "comp3663-vuejs",
   "version": "1.0.0",
-  "description": "Frontend for this weather visualization project",
+  "description": "Weather visualization displays attractive charts of historical weather data.",
   "author": "Weather Team",
   "private": true,
   "scripts": {
