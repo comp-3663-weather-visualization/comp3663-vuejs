@@ -125,12 +125,16 @@ export default {
           {
             label: this.year1,
             backgroundColor: '#f87979',
-            data: this.historicalWeather1.map((t) => { return t.avrTemp })
+            borderColor: '#f87979',
+            data: this.historicalWeather1.map((t) => { return t.avrTemp }),
+            fill: false
           },
           {
             label: this.year2,
             backgroundColor: '#333',
-            data: this.historicalWeather2.map((t) => { return t.avrTemp })
+            borderColor: '#333',
+            data: this.historicalWeather2.map((t) => { return t.avrTemp }),
+            fill: false
           }
         ]
       }
