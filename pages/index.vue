@@ -183,10 +183,11 @@ export default {
       }
     },
     years() {
+      let year = this.minYear
       const date = new Date()
       const currentYear = date.getFullYear()
-      const delta = currentYear - this.minYear
-      return [...Array(delta).keys()].map(x => this.minYear++)
+      const delta = currentYear - year
+      return [...Array(delta).keys()].map(x => year++)
     }
   },
   created() {
@@ -203,7 +204,7 @@ export default {
           this.currentWeather = data
         })
         .catch((response) => {
-          console.log(response)
+          console.log(response) // eslint-disable-line no-console
         })
     },
     getHistoricalWeather(year, cb) {
@@ -215,7 +216,7 @@ export default {
             cb(data)
           })
           .catch((response) => {
-            console.log(response)
+            console.log(response) // eslint-disable-line no-console
           })
       }
     },
@@ -227,7 +228,7 @@ export default {
           this.locations = data.sort()
         })
         .catch((response) => {
-          console.log(response)
+          console.log(response) // eslint-disable-line no-console
         })
     },
     updateWeather() {

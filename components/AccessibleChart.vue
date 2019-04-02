@@ -4,18 +4,30 @@
       <caption>{{ ariaLabel }}</caption>
       <thead>
         <tr>
-          <th scope="row">{{ xAxisLabel }}</th>
-          <th scope="col" v-for="(label, idx) in xLabels" :key="idx">{{ label }}</th>
+          <th scope="row">
+            {{ xAxisLabel }}
+          </th>
+          <th v-for="(label, idx) in xLabels" :key="idx" scope="col">
+            {{ label }}
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ lineOne.label }}</th>
-          <td v-for="(val, idx) in lineOne.data" :key="idx">{{ val }}</td>
+          <th scope="row">
+            {{ lineOne.label }}
+          </th>
+          <td v-for="(val, idx) in lineOne.data" :key="idx">
+            {{ val }}
+          </td>
         </tr>
         <tr>
-          <th scope="row">{{ lineTwo.label }}</th>
-          <td v-for="(val, idx) in lineTwo.data" :key="idx">{{ val }}</td>
+          <th scope="row">
+            {{ lineTwo.label }}
+          </th>
+          <td v-for="(val, idx) in lineTwo.data" :key="idx">
+            {{ val }}
+          </td>
         </tr>
       </tbody>
     </table>
