@@ -18,11 +18,13 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.15",
     "chart.js": "^2.7.3",
     "cross-env": "^5.2.0",
     "nuxt": "^2.3.4",
-    "vue-chartjs": "^3.4.0",
-    "vuetify": "^1.5.4"
+    "vue": "^2.6.9",
+    "vue-chartjs": "^3.4.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

@@ -26,17 +26,12 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-    '~assets/app.styl'
-  ],
+  css: [],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-    '~plugins/vuetify.js'
-
-  ],
+  plugins: [],
 
   /*
   ** Nuxt.js modules
@@ -44,8 +39,10 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'bootstrap-vue/nuxt'
   ],
+
   /*
   ** Axios module configuration
   */
