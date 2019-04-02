@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="hidden" summary="This is the text alternative for the rendered chart.">
+    <table id="chart-table" class="hidden" summary="This is the text alternative for the rendered chart.">
       <caption>{{ ariaLabel }}</caption>
       <thead>
         <tr>
