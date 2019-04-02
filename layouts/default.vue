@@ -28,12 +28,35 @@ html {
   margin: 0;
 }
 
-h1 {
-  font-size: 4em;
+body {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
-h2 {
-  font-size: 2em;
+select, select.form-control,
+select.form-control:focus {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+select.form-control > option {
+  color: #000;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.hidden {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
 
 .right {
