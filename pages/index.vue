@@ -75,10 +75,10 @@
         </div>
       </div>
       <chart :chart-data="chartData" />
-      <!-- <accessible-chart
+      <accessible-chart
         aria-label="Weather Chart"
         :chart-data="chartData"
-      /> -->
+      />
     </div>
   </div>
 </template>
