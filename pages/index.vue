@@ -1,68 +1,101 @@
 <template>
   <div id="app">
-    <v-container>
-      <v-layout row>
-        <v-flex fluid>
-          <Time :time="parsedWeather.time" :date="parsedWeather.date" />
-          <div class="m-1">
-            <label class="inline">Year 1: </label>
-            <label-select
-              class="inline"
-              v-model="year1"
-              :list="years"
-              @input="updateWeather"
-            />
-          </div>
-          <div class="m-1">
-            <label class="inline">Year 2: </label>
-            <label-select
-              class="inline"
-              v-model="year2"
-              :list="years"
-              @input="updateWeather"
-            />
-          </div>
-        </v-flex>
-        <v-spacer />
-        <v-flex fluid>
-          <label-select
-            class="m-1 right"
+    <div class="container">
+      <div class="m-4 row">
+        <div class="col-md-6">
+          <label
+            class="hidden"
+            for="city"
+          >City: </label>
+          <select
+            id="city"
             v-model="cityName"
-            :list="locations"
-            @input="updateWeather"
-          />
-          <weather
-            :time="parsedWeather.time"
-            :title="parsedWeather.title"
-            :temp="parsedWeather.temp"
-          />
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container>
+            class="form-control mb-3"
+            @change="updateWeather"
+          >
+            <option
+              v-for="(loc, key) in locations"
+              :key="key"
+            >
+              {{ loc }}
+            </option>
+          </select>
+          <h1>{{ parsedWeather.title.trim() }}</h1>
+          <h1>{{ parsedWeather.temp.trim() }}</h1>
+        </div>
+        <div class="col-md-6">
+          <h2 class="right">
+            {{ parsedWeather.time }}
+          </h2>
+          <h2 class="right">
+            {{ parsedWeather.date }}
+          </h2>
+          <div class="form-group row">
+            <label
+              class="col-4 col-form-label"
+              for="inputYear1"
+            >Year 1: </label>
+            <div class="col-8">
+              <select
+                id="inputYear1"
+                v-model="year1"
+                class="form-control"
+                @change="updateWeather"
+              >
+                <option
+                  v-for="(year, key) in years"
+                  :key="key"
+                >
+                  {{ year }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              class="col-4 col-form-label"
+              for="inputYear2"
+            >Year 2: </label>
+            <div class="col-8">
+              <select
+                id="inputYear2"
+                v-model="year2"
+                class="form-control"
+                @change="updateWeather"
+              >
+                <option
+                  v-for="(year, key) in years"
+                  :key="key"
+                >
+                  {{ year }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
       <chart :chart-data="chartData" />
-    </v-container>
+      <!-- <accessible-chart
+        aria-label="Weather Chart"
+        :chart-data="chartData"
+      /> -->
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import cities from '~/data/cities.json'
 import Chart from '~/components/Chart.vue'
-import LabelSelect from '~/components/LabelSelect.vue'
-import Time from '~/components/Time.vue'
-import Weather from '~/components/Weather.vue'
+import AccessibleChart from '~/components/AccessibleChart.vue'
 
 const WEATHER_API_URL = 'https://weather.johnconnolly.me'
 
 export default {
-  components: {
-    Chart,
-    LabelSelect,
-    Time,
-    Weather
-  },
+  components: { Chart, AccessibleChart },
   data() {
     return {
+      cities,
       cityName: 'KENTVILLE CDA CS',
       currentWeather: {
         temp: '451',
@@ -175,14 +208,16 @@ export default {
     },
     getHistoricalWeather(year, cb) {
       const url = `${WEATHER_API_URL}/historicalWeather?city=${this.cityName}&year=${year}`
-      axios
-        .get(encodeURI(url))
-        .then(({ data }) => {
-          cb(data)
-        })
-        .catch((response) => {
-          console.log(response)
-        })
+      if (year) {
+        axios
+          .get(encodeURI(url))
+          .then(({ data }) => {
+            cb(data)
+          })
+          .catch((response) => {
+            console.log(response)
+          })
+      }
     },
     getLocations() {
       const url = `${WEATHER_API_URL}/locations`
@@ -220,10 +255,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  position: relative;
-}
-
 .inline {
   display: inline-block;
 }
