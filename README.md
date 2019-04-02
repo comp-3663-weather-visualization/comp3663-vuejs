@@ -5,18 +5,23 @@
 ## Build Setup
 
 ``` bash
+# install node and yarn
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+https://linuxize.com/post/how-to-install-yarn-on-ubuntu-18-04/
+
 # install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+# run service locally, available at localhost:3000
+$ yarn dev
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
+# run tests
+$ yarn test
+# OR log into the following tests server and run tests there
+$ ssh comp3663@kasza.ca
+(pw: Dr.Lee-2019)
+$ cd comp3663-vuejs
+$ yarn test
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
